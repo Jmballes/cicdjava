@@ -19,7 +19,7 @@ phases:
     commands:
       - echo "Build start on `date`"
       - cd simpleApp
-      - mvn package
+      - mvn package -DskipTests
   post_build:
     commands:
       # Use Post Build for notifications, git tags and any further customization after build
@@ -33,7 +33,7 @@ phases:
 artifacts:
   files:
     # list of local files relative to this build environment that will be added to the final artifact (zip)
-    - simpleApp/target/simpleApp.jar
+    - simpleApp/target/covidupdatesspain-1.0.0.jar
   discard-paths: yes
 
 #########################################
