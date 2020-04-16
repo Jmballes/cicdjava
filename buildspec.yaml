@@ -15,6 +15,13 @@ version: 0.2
 #     key: "value"
 
 phases:
+  install:
+    commands:
+      # Use Install phase to install packages or any pre-reqs you may need throughout the build (e.g. dev deps, security checks, etc.)
+      - echo "Install awscli"
+      - pip install --upgrade awscli aws-sam-cli
+      - cd simpleApp
+      - cd ..
   build:
     commands:
       - echo "Build start on `date`"
