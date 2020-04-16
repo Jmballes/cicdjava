@@ -16,22 +16,20 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:	
+      nodejs: 10
+      java: corretto8
+      python: 3.7
     commands:
       # Use Install phase to install packages or any pre-reqs you may need throughout the build (e.g. dev deps, security checks, etc.)
       - echo "Install node and npm and sam"
-      - sudo apt-get install curl
-      - curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-      - sudo apt-get install -y nodejs
-      - node -v
-      - npm -v
-      - pip install --upgrade awscli aws-sam-cli
-      - cd simpleApp
-      - cd ..
+      - pip3 install --upgrade aws-sam-cli selenium pylint
   build:
     commands:
       - echo "Build start on `date`"
       - cd simpleApp
-      - sam build 
+      - java -version
+      - mvn clean package -DskipTests
       - sam package --s3-bucket $BUILD_OUTPUT_BUCKET --template-file template.yml --output-template-file packaged.yml
   post_build:
     commands:
