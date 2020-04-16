@@ -34,6 +34,9 @@ phases:
       - ls
       - java -version
       - mvn package -DskipTests
+      - cd target
+      - ls
+      - cd ..
       - sam package --s3-bucket $BUILD_OUTPUT_BUCKET --template-file template.yml --output-template-file packaged.yml
   post_build:
     commands:
