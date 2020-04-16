@@ -42,7 +42,8 @@ Resources:
     Properties:
       Handler: mySimpleFunction.handler
       Runtime: java8
-      CodeUri: ./functions
+      CodeUri: target/aws-sam-java-rest-1.0.0.jar
+      Handler: com.jmbo.covid19.lambda::handleRequest
       Events:
         MySimpleFunctionAPI:
           Type: Api
