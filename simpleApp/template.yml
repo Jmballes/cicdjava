@@ -41,7 +41,7 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       Runtime: java8
-      CodeUri: target/covidupdatesspain-1.0.0.0.jar
+      CodeUri: target/covidupdatesspain-1.0.0.jar
       Handler: com.jmbo.covid19.lambda::handleRequest
       Events:
         MySimpleFunctionAPI:
