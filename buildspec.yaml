@@ -19,12 +19,13 @@ phases:
     commands:
       - echo "Build start on `date`"
       - cd simpleApp
-      - mvn package -DskipTests
+      - sam build 
+      - sam package --s3-bucket $BUILD_OUTPUT_BUCKET --template-file template.yml --output-template-file packaged.yml
   post_build:
     commands:
       # Use Post Build for notifications, git tags and any further customization after build
       # - echo "[Post-Build phase]"
-      - echo "Build completed om `date`"
+      - echo "SAM packaging completed on `date`"
 
 ##################################
 # Build Artifacts to be uploaded #
@@ -33,7 +34,7 @@ phases:
 artifacts:
   files:
     # list of local files relative to this build environment that will be added to the final artifact (zip)
-    - simpleApp/target/covidupdatesspain-1.0.0.jar
+    - simpleApp/packaged.yml
   discard-paths: yes
 
 #########################################
