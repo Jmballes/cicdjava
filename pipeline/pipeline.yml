@@ -188,7 +188,7 @@ Resources:
                         Provider: Lambda
                         Version: "1"
                       Configuration:
-                        FunctionName: testingApp-MyTestingFunction-3UH80R91MAYE 
+                        FunctionName: testcodvid19-MySimpleFunction-KQPUU6FSOM4O 
                       OutputArtifacts: []
                       InputArtifacts: []
                       Region: eu-west-1

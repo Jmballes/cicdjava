@@ -12,30 +12,54 @@ Parameters:
       - prod
     Description: Environment of this stack of resources
 
+Mappings:
+  ResourcesName:
+    dev:
+      tableName: MyDynamoDBTable-dev
+    staging:
+      tableName: MyDynamoDBTable-staging
+    prod:
+      tableName: MyDynamoDBTable-prod
+
 # Global information for all the functions
 Globals:
   Function:
-    Runtime: nodejs12.x
+    Runtime: java8
     MemorySize: 256
     Timeout: 100
-    Tracing: Active
 
 Resources:
 
-  MyTestingFunction: 
+  # Basic definitions for my API Gateway
+  MyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref MyEnvironment
+
+  # A function with the most commont attributes
+  MySimpleFunction: 
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: myTestingFunction.handler
-      CodeUri: .
-      Policies:
-        - CodePipelineLambdaExecutionPolicy: {}
-      
+      Runtime: java8
+      CodeUri: target/testcovid-1.0.0.jar
+      Handler: com.jmbo.covid19::handleRequest
+      Events:
+        MySimpleFunctionAPI:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApi
+            Path: /simple
+            Method: GET
 
 Outputs:
   Region:
     Description: "Region"
     Value: !Ref AWS::Region
 
-  Function:
-    Description: "Function ARN"
-    Value: !GetAtt MyTestingFunction.Arn
+  ApiId:
+    Description: "API ID"
+    Value: !Ref MyApi
+
+  ApiUrl:
+    Description: "API endpoint URL for Prod environment"
+    Value: !Sub 'https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com/dev/'
