@@ -188,7 +188,7 @@ Resources:
                         Provider: Lambda
                         Version: "1"
                       Configuration:
-                        FunctionName: testcodvid19-MySimpleFunction-KQPUU6FSOM4O 
+                        FunctionName: testcodvid19-MySimpleFunction-1JFB3CKND2LF1
                       OutputArtifacts: []
                       InputArtifacts: []
                       Region: eu-west-1
