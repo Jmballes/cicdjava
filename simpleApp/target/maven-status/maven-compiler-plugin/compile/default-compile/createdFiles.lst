@@ -1,0 +1,4 @@
+com\jmbo\calculator\Calculator.class
+com\jmbo\calculator\model\ServerlessOutput.class
+com\jmbo\calculator\model\ServerlessInput$RequestContext.class
+com\jmbo\calculator\model\ServerlessInput.class
