@@ -10,6 +10,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
 import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -30,8 +31,10 @@ public class Calculator implements RequestHandler<ServerlessInput, ServerlessOut
     public ServerlessOutput handleRequest(ServerlessInput serverlessInput, Context context) {
         // Using builder to create the clients could allow us to dynamically load the region from the AWS_REGION environment
         // variable. Therefore we can deploy the Lambda functions to different regions without code change.    
-
+    	 LambdaLogger logger = context.getLogger();
+ 		logger.log("INIT");
         ServerlessOutput output = new ServerlessOutput();
+ 		logger.log("INIT");
         int num1=Integer.parseInt(serverlessInput.getQueryStringParameters().get(NUM1));
         int num2=Integer.parseInt(serverlessInput.getQueryStringParameters().get(NUM2));
         String op=serverlessInput.getQueryStringParameters().get(OP);

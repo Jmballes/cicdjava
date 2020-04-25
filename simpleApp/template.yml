@@ -42,7 +42,7 @@ Resources:
     Properties:
       Runtime: java8
       CodeUri: target/calculator-1.0.0.jar
-      Handler: com.jmbo.calculator::handleRequest
+      Handler: com.jmbo.calculator.Calculator::handleRequest
       Events:
         MySimpleFunctionAPI:
           Type: Api

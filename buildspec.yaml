@@ -30,6 +30,10 @@ phases:
   build:
     commands:
       - echo "Build start on `date`"
+      - echo `Builddd start on date`
+      - echo CODEBUILD_BUILD_IMAGE=$CODEBUILD_BUILD_IMAGE
+      - echo CODEBUILD_SOURCE_REPO_URL=$CODEBUILD_SOURCE_REPO_URL
+      - echo CODEBUILD_SRC_DIR=$CODEBUILD_SRC_DIR
       - cd simpleApp
       - ls
       - java -version
