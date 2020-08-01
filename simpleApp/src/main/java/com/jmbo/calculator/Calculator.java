@@ -67,7 +67,8 @@ public class Calculator implements RequestHandler<ServerlessInput, ServerlessOut
 
 
             output.setStatusCode(200);
-            String stringresult="{\"result\":\" "+result + "}";
+            //Faltan comillas
+            String stringresult="{\"result\":\""+result + "\"}";
             output.setBody(stringresult);
         } catch (Exception e) {
             output.setStatusCode(500);
